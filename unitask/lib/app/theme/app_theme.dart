@@ -5,6 +5,10 @@ class AppTheme {
     brightness: Brightness.light,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     scaffoldBackgroundColor: Colors.white,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Colors.white,
+      foregroundColor: Colors.black,
+    ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       foregroundColor: Colors.white,
       backgroundColor: Color(0xFF3B82F6),
