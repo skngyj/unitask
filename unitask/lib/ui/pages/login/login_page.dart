@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:unitask/app/extensions/sized_box_extension.dart';
+import 'package:unitask/app/extensions/snackbar_extension.dart';
 import 'package:unitask/app/router/app_page.dart';
 import 'package:unitask/ui/common/label_text_field.dart';
 import 'package:unitask/ui/common/text_divider.dart';
@@ -31,7 +32,6 @@ class _LoginPageState extends State<LoginPage> {
               Text('과제 관리를 스마트하게'),
               50.heightBox,
 
-              //이메일
               LabelTextField(
                 label: '이메일',
                 hintText: 'example@university.edu',
@@ -40,25 +40,25 @@ class _LoginPageState extends State<LoginPage> {
 
               20.heightBox,
 
-              //비밀번호
               LabelTextField(
                 label: '비밀번호',
-                hintText: '000000',
+                hintText: '************',
                 icon: LucideIcons.lockKeyhole,
+                enableObscure: true,
               ),
 
-              //비밀번호 찾기
               Align(
                 alignment: .centerRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context.showSnackbar('곧 기능을 출시합니다!');
+                  },
                   child: Text('비밀번호를 잊으셨나요?'),
                 ),
               ),
 
               20.heightBox,
 
-              //로그인버튼
               SizedBox(
                 width: .infinity,
                 child: ElevatedButton(
@@ -80,9 +80,12 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisSize: .min,
                 children: [
                   Text('계정이 없으신가요'),
-                  TextButton(onPressed: () {
-                    context.pushNamed(AppPage.signup.name);
-                  }, child: Text("회원가입")),
+                  TextButton(
+                    onPressed: () {
+                      context.pushNamed(AppPage.signup.name);
+                    },
+                    child: Text('회원가입'),
+                  ),
                 ],
               ),
             ],

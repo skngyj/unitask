@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 
 class LabelTextField extends StatefulWidget {
-  final TextEditingController? controller;
+  final bool enableObscure;
   final String label;
   final String? hintText;
   final IconData? icon;
-  final bool enableObscure;
+  final TextEditingController? controller;
 
   const LabelTextField({
     super.key,
@@ -30,8 +30,6 @@ class _LabelTextFieldState extends State<LabelTextField> {
     });
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -39,20 +37,20 @@ class _LabelTextFieldState extends State<LabelTextField> {
       mainAxisSize: .min,
       crossAxisAlignment: .stretch,
       children: [
-        Text(widget.label, style: const TextStyle(fontWeight: .bold)),
+        Text(widget.label, style: TextStyle(fontWeight: .bold)),
         TextField(
           controller: widget.controller,
-          obscureText: _obscureText ,
+          obscureText: _obscureText,
           decoration: InputDecoration(
             prefixIcon: Icon(widget.icon),
-            suffixIcon: InkWell(
-              onTap: () {
-                debugPrint('테스트');
-              },
+            suffixIcon: widget.enableObscure
+                ? InkWell(
+              onTap: _switchObscure,
               child: Icon(
                 _obscureText ? LucideIcons.eyeClosed : LucideIcons.eye,
               ),
-            ),
+            )
+                : null,
             hintText: widget.hintText,
           ),
         ),
